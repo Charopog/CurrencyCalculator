@@ -31,6 +31,8 @@ namespace CurrencyCalculator.Xam
         {
             containerRegistry.RegisterForNavigation<NavigationPage>();
             containerRegistry.RegisterForNavigation<MainPage>();
+            containerRegistry.RegisterForNavigation<CalculatorPage>();
+            containerRegistry.RegisterForNavigation<CurrencyConvertPage>();
         }
     }
 }
