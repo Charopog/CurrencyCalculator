@@ -1,1 +1,1 @@
-# CurrencyClaculator
+# CurrencyCalculator
