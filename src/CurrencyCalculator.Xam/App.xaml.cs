@@ -5,6 +5,8 @@ using CurrencyCalculator.Xam.Views;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using Prism.Unity;
+using CurrencyCalculator.Xam.Services.Abstractions;
+using CurrencyCalculator.Xam.Services;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace CurrencyCalculator.Xam
@@ -24,13 +26,14 @@ namespace CurrencyCalculator.Xam
         {
             InitializeComponent();
 
-            await NavigationService.NavigateAsync("NavigationPage/MainPage");
+            await NavigationService.NavigateAsync("CalculatorPage");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
+            containerRegistry.Register<ICalculatorService, CalculatorService>();
+
             containerRegistry.RegisterForNavigation<NavigationPage>();
-            containerRegistry.RegisterForNavigation<MainPage>();
             containerRegistry.RegisterForNavigation<CalculatorPage>();
             containerRegistry.RegisterForNavigation<CurrencyConvertPage>();
         }
