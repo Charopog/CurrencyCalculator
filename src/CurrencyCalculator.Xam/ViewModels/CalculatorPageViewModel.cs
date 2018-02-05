@@ -12,14 +12,20 @@ namespace CurrencyCalculator.Xam.ViewModels
 	public class CalculatorPageViewModel : ViewModelBase
     {
         private readonly ICalculatorService _calculatorService;
+        private readonly ICurrencyExchangeService _currencyExchangeService;
 
         private double? _firstOperand;
         private string _mathOperator;
 
-        public CalculatorPageViewModel(INavigationService navigationService, ICalculatorService calculatorService) : base(navigationService)
+        public CalculatorPageViewModel(INavigationService navigationService, ICalculatorService calculatorService,
+            ICurrencyExchangeService currencyExchangeService) : base(navigationService)
         {
+            _currencyExchangeService = currencyExchangeService
+                ?? throw new ArgumentNullException(nameof(currencyExchangeService));
 
-            _calculatorService = calculatorService ?? throw new ArgumentNullException(nameof(calculatorService));
+            _calculatorService = calculatorService 
+                ?? throw new ArgumentNullException(nameof(calculatorService));
+
             DigitEntryCommand = new DelegateCommand<string>(HandleDigitEntry);
             OperatorEntryCommand = new DelegateCommand<string>(HandleOperatorEntry);
             PointEntryCommand = new DelegateCommand(HandlePointEntry);
@@ -29,7 +35,6 @@ namespace CurrencyCalculator.Xam.ViewModels
             NavigateToCurrencyConverterCommand = new DelegateCommand(NavigateToCurrencyConverter);
             PlusMinusEntryCommand = new DelegateCommand(HandlePlusMinusEntry);
         }
-
 
         public DelegateCommand<string> DigitEntryCommand { get; private set; }
         public DelegateCommand<string> OperatorEntryCommand { get; private set; }
@@ -55,6 +60,12 @@ namespace CurrencyCalculator.Xam.ViewModels
             set { SetProperty(ref _resultDisplayValue, value); }
         }
 
+        public override async void OnNavigatedTo(NavigationParameters parameters)
+        {
+            base.OnNavigatedTo(parameters);
+            await _currencyExchangeService.GetLatestExchangeRates();
+        }
+
         private void HandlePlusMinusEntry()
         {
             if (String.IsNullOrWhiteSpace(_resultDisplayValue))
@@ -69,11 +80,11 @@ namespace CurrencyCalculator.Xam.ViewModels
             {
                 ResultDisplayValue = "-" + _resultDisplayValue;
             }
-            
         }
 
-        private void NavigateToCurrencyConverter()
+        private async void NavigateToCurrencyConverter()
         {
+            await NavigationService.NavigateAsync("CurrencyConvertPage", null, true, false);
         }
 
         private void ExecuteEquals()
@@ -147,7 +158,6 @@ namespace CurrencyCalculator.Xam.ViewModels
                 RaisePropertyChanged(nameof(CalculationsDisplayValue));
                 ResultDisplayValue = null;
             }
-            
         }
 
         private void HandleDigitEntry(string digit)

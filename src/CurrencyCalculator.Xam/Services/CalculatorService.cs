@@ -12,13 +12,13 @@ namespace CurrencyCalculator.Xam.Services
             switch (mathOperator)
             {
                 case "+":
-                    return firstNumber + secondNumber;
+                    return Math.Round(firstNumber + secondNumber, 2);
                 case "-":
-                    return firstNumber - secondNumber;
+                    return Math.Round(firstNumber - secondNumber, 2);
                 case "x":
-                    return firstNumber * secondNumber;
+                    return Math.Round(firstNumber * secondNumber, 2);
                 case "÷":
-                    return firstNumber / secondNumber;
+                    return Math.Round(firstNumber / secondNumber, 2);
                 default:
                     throw new ArgumentException("Invalid Operator!");
             }

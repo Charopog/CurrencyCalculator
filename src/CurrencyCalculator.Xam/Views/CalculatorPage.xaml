@@ -4,7 +4,7 @@
              xmlns:prism="clr-namespace:Prism.Mvvm;assembly=Prism.Forms"
              prism:ViewModelLocator.AutowireViewModel="True"
              x:Class="CurrencyCalculator.Xam.Views.CalculatorPage"
-            Style="{StaticResource DefaultPageStyle}">
+             Style="{StaticResource DefaultPageStyle}">
     <Grid ColumnSpacing="0" RowSpacing="0" 
           HorizontalOptions="FillAndExpand" 
           VerticalOptions="FillAndExpand">
@@ -25,18 +25,18 @@
         <!--Display-->
         <Grid Grid.Row="0" Grid.Column="0"
                      Grid.ColumnSpan="4"
-                     BackgroundColor="#f06e5c"
+                     BackgroundColor="{StaticResource Orange}"
                      Padding="20,10,20,10">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="1.5*"/>
             </Grid.RowDefinitions>
-            <Label Text="{Binding CalculationsDisplayValue}"
+            <Label Text="{Binding CalculationsDisplayValue }"
                    Grid.Row="0"
                    Style="{StaticResource CalculationsLabelStyle}"
                    HorizontalOptions="EndAndExpand"
                    VerticalOptions="EndAndExpand"/>
-            <Label Text="{Binding ResultDisplayValue}"
+            <Label Text="{Binding ResultDisplayValue }"
                    Grid.Row="1"
                    Style="{StaticResource ResultLabelStyle}"
                    HorizontalOptions="EndAndExpand"

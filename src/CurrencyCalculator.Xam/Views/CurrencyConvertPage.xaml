@@ -5,14 +5,11 @@
              prism:ViewModelLocator.AutowireViewModel="True"
              xmlns:pickers="clr-namespace:CurrencyCalculator.Xam.UI.CustomControls;assembly=CurrencyCalculator.Xam"
              xmlns:constants="clr-namespace:CurrencyCalculator.Xam.Constants;assembly=CurrencyCalculator.Xam"
-             x:Class="CurrencyCalculator.Xam.Views.CurrencyConvertPage">
-    <ContentPage.Padding>
-        <OnPlatform x:TypeArguments="Thickness">
-            <OnPlatform.iOS>0,20,0,0</OnPlatform.iOS>
-        </OnPlatform>
-    </ContentPage.Padding>
+             x:Class="CurrencyCalculator.Xam.Views.CurrencyConvertPage"
+             Style="{StaticResource DefaultPageStyle}">
     <Grid ColumnSpacing="0" RowSpacing="0" 
-          HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+          HorizontalOptions="FillAndExpand" 
+          VerticalOptions="FillAndExpand">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="*"/>
@@ -29,94 +26,119 @@
         <!--Display-->
         <Grid Grid.Row="0" Grid.Column="0"
                      Grid.ColumnSpan="4"
-                     BackgroundColor="#f06e5c"
-                     Padding="20,10,20,10">
+                     BackgroundColor="{StaticResource Orange}"
+                     Padding="5,5,20,5">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="0.5*"/>
+                <ColumnDefinition Width="0.3*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
+            
             <pickers:EnumBindablePicker x:TypeArguments="constants:Currency" 
-                                                SelectedItem="{Binding SourceCurrency}"
-                                        BackgroundColor="#2b2b2b"
-                                        Margin="10,10,10,10"
-                                        HorizontalOptions="FillAndExpand"
-                                        VerticalOptions="FillAndExpand"
-                                        TextColor="White"
-                                                Grid.Row="0"
-                                                Grid.Column="0"/>
-            <Label Text="25000"
-                   FontSize="42"
+                                        SelectedItem="{Binding SourceCurrency}"
+                                        Grid.Row="0"
+                                        Grid.Column="0"
+                                        Style="{StaticResource CurrencyPickerStyle}"/>
+            
+            <pickers:EnumBindablePicker x:TypeArguments="constants:Currency" 
+                                        SelectedItem="{Binding TargetCurrency}"
+                                        Grid.Row="1"
+                                        Grid.Column="0"
+                                        Style="{StaticResource CurrencyPickerStyle}"/>
+
+            <Label Text="{Binding SourceCurrencyDisplayValue}"
                    Grid.Row="0"
                    Grid.Column="1"
-               TextColor="White"
-               HorizontalOptions="EndAndExpand"
-               HorizontalTextAlignment="End"
-               VerticalOptions="CenterAndExpand"
-               VerticalTextAlignment="Center"/>
+                   Style="{StaticResource ResultLabelStyle}"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
 
-            <Label Text="500000"
+            <Label Text="{Binding TargetCurrencyDisplayValue}"
                    Grid.Row="1"
                    Grid.Column="1"
-               FontSize="45"
-               TextColor="White"
-               HorizontalOptions="EndAndExpand"
-               HorizontalTextAlignment="End"
-               VerticalOptions="CenterAndExpand"
-               VerticalTextAlignment="Center"/>
+                   Style="{StaticResource ResultLabelStyle}"
+                   HorizontalOptions="EndAndExpand"
+                   VerticalOptions="CenterAndExpand"/>
+
+
         </Grid>
-        <!--Second Row-->
+        <!--First Row-->
         <Button Text="7"
                 Grid.Row="1" Grid.Column="0"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="7"/>
         <Button Text="8"
                 Grid.Row="1" Grid.Column="1"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="8"/>
         <Button Text="9"
                 Grid.Row="1" Grid.Column="2"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="9"/>
         <Button Text="C"
                 Grid.Row="1" Grid.Column="3"
-                Style="{StaticResource OperatorButtonStyle}"/>
-        <!--Third Row-->
+                Style="{StaticResource OperatorButtonStyle}"
+                Command="{Binding ClearCommand}"/>
+        <!--Second Row-->
         <Button Text="4"
                 Grid.Row="2" Grid.Column="0"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="4"/>
         <Button Text="5"
                 Grid.Row="2" Grid.Column="1"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="5"/>
         <Button Text="6"
                 Grid.Row="2" Grid.Column="2"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="6"/>
         <Button Text="Del"
                 Grid.Row="2" Grid.Column="3"
-                Style="{StaticResource OperatorButtonStyle}"/>
-        <!--Fourth Row-->
+                Style="{StaticResource OperatorButtonStyle}"
+                Command="{Binding DeleteCommand}"/>
+        <!--Third Row-->
         <Button Text="1"
                 Grid.Row="3" Grid.Column="0"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="1"/>
         <Button Text="2"
                 Grid.Row="3" Grid.Column="1"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="2"/>
         <Button Text="3"
                 Grid.Row="3" Grid.Column="2"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="3"/>
         <Button Text="="
                 Grid.Row="3" Grid.Column="3"
                 Grid.RowSpan="2"
-                Style="{StaticResource OperatorButtonStyle}"/>
-        <!--Fifth Row-->
-        <Button Image="ic_exchange.png"
+                Style="{StaticResource OperatorButtonStyle}"
+                Command="{Binding EqualsCommand}"/>
+        <!--Fourth Row-->
+        <Button Image="ic_calculator.png"
                 Grid.Row="4" Grid.Column="0"
-                Style="{StaticResource OperatorButtonStyle}"/>
+                Style="{StaticResource OperatorButtonStyle}"
+                Command="{Binding NavigateToCalculatorCommand}"/>
         <Button Text="0"
                 Grid.Row="4" Grid.Column="1"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding DigitEntryCommand}"
+                CommandParameter="0"/>
         <Button Text="."
                 Grid.Row="4" Grid.Column="2"
-                Style="{StaticResource NumericButtonStyle}"/>
+                Style="{StaticResource NumericButtonStyle}"
+                Command="{Binding PointEntryCommand}"/>
     </Grid>
 </ContentPage>
