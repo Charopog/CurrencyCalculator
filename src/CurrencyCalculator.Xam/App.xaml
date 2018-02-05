@@ -4,8 +4,119 @@
              xmlns:prism="clr-namespace:Prism.Unity;assembly=Prism.Unity.Forms"
              x:Class="CurrencyCalculator.Xam.App">
 	<Application.Resources>
+        <ResourceDictionary>
+            <!--Colors-->
+            <Color x:Key="DarkBlackColor">#1f1f1f</Color>
+            <Color x:Key="LightBlackColor">#2b2b2b</Color>
+            <Color x:Key="LighterBlackColor">#3e3d3d</Color>
+            <Color x:Key="Orange">#f06e5c</Color>
+            <Color x:Key="White">#ffffff</Color>
+            
+            <!--Paddings-->
+            <OnPlatform x:Key="PagePadding" 
+                        x:TypeArguments="Thickness"
+                        iOS="0, 20, 0, 0"/>
+            
+            <!-- FONT SIZES -->
+            <OnPlatform 
+                x:Key="LittleSize"
+                x:TypeArguments="x:Double"
+                iOS="11"
+                Android="12"/>
 
-		<!-- Application resource dictionary -->
+            <OnPlatform 
+                x:Key="MidMediumSize"
+                x:TypeArguments="x:Double"
+                iOS="12"
+                Android="14"/>
 
+            <OnPlatform 
+                x:Key="MediumSize"
+                x:TypeArguments="x:Double"
+                iOS="14"
+                Android="16"/>
+
+            <OnPlatform 
+                x:Key="LargeSize"
+                x:TypeArguments="x:Double"
+                iOS="16"
+                Android="18"/>
+
+            <OnPlatform 
+                x:Key="LargerSize"
+                x:TypeArguments="x:Double"
+                iOS="18"
+                Android="20"/>
+
+            <OnPlatform 
+                x:Key="BigSize"
+                x:TypeArguments="x:Double"
+                iOS="20"
+                Android="24"/>
+
+            <OnPlatform 
+                x:Key="ExtraBigSize"
+                x:TypeArguments="x:Double"
+                iOS="24"
+                Android="32"/>
+            
+            <OnPlatform 
+                x:Key="HugeSize"
+                x:TypeArguments="x:Double"
+                iOS="38"
+                Android="42"/>
+            
+            <!--Styles-->
+
+            <Style x:Key="NumericButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource DarkBlackColor}"/>
+                <Setter Property="FontSize" Value="{StaticResource BigSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource White}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="BorderRadius" Value="0"/>
+                <Setter Property="BorderColor" Value="{StaticResource LighterBlackColor}"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+            
+            <Style x:Key="OperatorButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBlackColor}"/>
+                <Setter Property="FontSize" Value="{StaticResource BigSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource Orange}"/>
+                <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+                <Setter Property="VerticalOptions" Value="FillAndExpand"/>
+                <Setter Property="BorderRadius" Value="0"/>
+                <Setter Property="BorderColor" Value="{StaticResource LighterBlackColor}"/>
+                <Setter Property="BorderWidth" Value="2"/>
+            </Style>
+            
+            <Style x:Key="DefaultPageStyle" TargetType="ContentPage">
+                <Setter Property="Padding" Value="{StaticResource PagePadding}"/>
+                <Setter Property="BackgroundColor" Value="{StaticResource LighterBlackColor}"/>
+            </Style>
+
+            <Style x:Key="CalculationsLabelStyle" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="{StaticResource Orange}"/>
+                <Setter Property="FontSize" Value="{StaticResource BigSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource White}"/>
+                <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="VerticalTextAlignment" Value="End"/>
+            </Style>
+            
+            <Style x:Key="ResultLabelStyle" TargetType="Label">
+                <Setter Property="BackgroundColor" Value="{StaticResource Orange}"/>
+                <Setter Property="FontSize" Value="{StaticResource HugeSize}"/>
+                <Setter Property="TextColor" Value="{StaticResource White}"/>
+                <Setter Property="HorizontalTextAlignment" Value="End"/>
+                <Setter Property="VerticalTextAlignment" Value="Center"/>
+            </Style>
+
+            <Style x:Key="CurrencyPickerStyle" TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="{StaticResource LightBlackColor}"/>
+                <Setter Property="Margin" Value="0,0,0,0"/>
+                <Setter Property="TextColor" Value="{StaticResource White}"/>
+            </Style>
+
+        </ResourceDictionary>
 	</Application.Resources>
 </prism:PrismApplication>
