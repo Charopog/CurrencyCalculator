@@ -20,7 +20,7 @@ namespace CurrencyCalculator.Xam.Services
                 case "÷":
                     return Math.Round(firstNumber / secondNumber, 2);
                 default:
-                    throw new ArgumentException("Invalid Operator!");
+                    throw new ArgumentException("Invalid Operator");
             }
         }
     }

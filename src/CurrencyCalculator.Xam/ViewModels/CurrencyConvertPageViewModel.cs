@@ -81,10 +81,15 @@ namespace CurrencyCalculator.Xam.ViewModels
             }
         }
 
-        public override async void OnNavigatingTo(NavigationParameters parameters)
+        public override void OnNavigatingTo(NavigationParameters parameters)
         {
             base.OnNavigatingTo(parameters);
-            await _currencyExchangeService.GetLatestExchangeRates();
+
+            if(parameters!=null)
+            {
+                SourceCurrencyDisplayValue = parameters.GetValue<string>("resultValue");
+            }
+            
         }
 
         private async void NavigateToCalculator()

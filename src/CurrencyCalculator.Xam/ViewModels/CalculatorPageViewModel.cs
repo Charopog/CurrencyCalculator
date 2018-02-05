@@ -84,7 +84,14 @@ namespace CurrencyCalculator.Xam.ViewModels
 
         private async void NavigateToCurrencyConverter()
         {
-            await NavigationService.NavigateAsync("CurrencyConvertPage", null, true, false);
+            NavigationParameters navParameters = null;
+            if (!String.IsNullOrWhiteSpace(_resultDisplayValue))
+            {
+                navParameters = new NavigationParameters();
+                navParameters.Add("resultValue", ResultDisplayValue);
+            }
+
+            await NavigationService.NavigateAsync("CurrencyConvertPage", navParameters, true, false);
         }
 
         private void ExecuteEquals()
